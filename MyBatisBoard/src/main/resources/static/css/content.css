@@ -1,0 +1,256 @@
+.cont {
+	padding-top: 20px;
+	margin: 20px 0px;
+	border-radius: 10px;
+	background: #fff;
+}
+
+/* form ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.form_cont .form-group {
+	margin: 10px 0;
+	padding: 10px 0;
+	min-height: 50px;
+	display: flex;
+}
+
+.form_cont .form-group > label {
+	display: inline-block;
+	margin: 5px 10px 0 0;
+	text-align: right;
+	color: #000;
+	min-width: 30px;
+	text-align: left;
+}
+.form_cont .form-group > input{
+	margin: 0 15px 0 0;
+}
+.form_cont .form-group > label:first-of-type {
+	margin: 5px 10px 0 0;
+	font-weight: bold;
+	font-size: 18px;
+	min-width: 120px;
+	text-align: right;
+}
+
+.form_cont .form-group input[type="text"],
+.form_cont .form-group textarea{
+	padding: 10px;
+	width: 50%;
+	border: 1px solid #ccc;
+}
+.form_cont .form-group textarea{
+	min-height: 200px;
+}
+
+/*  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.btn-box{
+	display: flex;
+/* 	justify-content: flex-end;  */
+	padding:50px 0 30px;
+}
+
+.btn-group {
+	padding-left: 30px;
+}
+
+.btn {
+	border: none;
+	padding: 10px 15px;
+	border-radius: 15px;
+	margin: 15px;
+	cursor: pointer;
+}
+
+.btn_back {
+	background: #999;
+	color: #fff;
+}
+
+.btn_create {
+	background: #3c5ec3;
+	color: #fff;
+}
+
+.btn_create:hover {
+	background: #183ca7;
+}
+
+/*  테이블 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.table_wrap {
+	border-radius: 10px;
+	background: #fff;
+}
+
+.table-header {
+	background-color: #f8f9fc;
+	border-bottom: 1px solid #e3e6f0;
+	border-radius: 10px 10px 0 0;
+	padding: 20px;
+}
+
+.table-header h6 {
+	color: #4e73df;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.table-body {
+	padding: 20px;
+}
+
+.table-option {
+	display: flex;
+	justify-content: space-between;
+}
+
+.table {
+	border: 1px solid #e3e6f0;
+	font-size: 20px;
+}
+
+.table table {
+	width: 100%;
+}
+
+.table table thead {
+	border-bottom: 2px solid #e3e6f0;
+}
+
+.table table thead th {
+	font-weight: bold;
+	padding: 10px;
+	border: 1px solid #e3e6f0;
+}
+
+.table table tbody tr td:first-of-type {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	width: 100px;
+}
+
+.table table tbody td {
+	font-size: 16px;
+	border: 1px solid #e3e6f0;
+}
+
+.table table tbody td a {
+	display: inline-block;
+	padding: 15px;
+}
+
+.category{
+	border-radius: 10px;
+	background: #4e73df;
+	color:#fff;
+	font-size: 10px;
+	padding: 3px 10px;
+	margin-right:10px;
+}
+
+span.ann{
+	color:red;
+	margin: 0 10px 0 0;
+}
+
+/* pagination ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.pagination {
+	display: flex;
+	justify-content: flex-end;
+	margin: 10px 0;
+}
+
+.pagination li button {
+	position: relative;
+	display: block;
+	padding: 0.5rem 0.75rem;
+	margin-left: -1px;
+	line-height: 1.25;
+	color: #4e73df;
+	background-color: #fff;
+	border: 1px solid #dddfeb;
+}
+
+.pagination li button:hover {
+	z-index: 2;
+	color: #224abe;
+	text-decoration: none;
+	background-color: #eaecf4;
+	border-color: #dddfeb;
+	cursor: pointer;
+}
+/* 검색 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  */
+.keyword {
+	border: 1px solid #d1d3e2;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+/* cont */
+.head {
+	border-bottom: 1px solid #e3e6f0;
+	padding: 10px;
+}
+
+.head h1 {
+	font-size: 26px;
+	color: #000;
+	text-align: center;
+	padding: 10px;
+}
+
+.body {
+	margin: 60px 0;
+	padding: 20px;
+}
+
+.body p {
+	color: #000;
+	font-size: 18px;
+	text-align: center;
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.file-group{
+	min-height:100px;
+	width:60%;
+	margin: 0px 35px 20px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+.file-group li{
+	color:#000;
+	margin: 10px 0;
+}
+
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+input[type="file"] + label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  margin: 0 !important;
+}
+
+input[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+

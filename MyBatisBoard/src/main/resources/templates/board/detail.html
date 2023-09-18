@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- 타임리프의 th 속성을 사용하기 위해 선언된 네임스테이스 -->
+<head>
+<meta charset="UTF-8">
+<title>글 상세</title>
+
+</head>
+<body>
+
+	<a th:href="@{/board/1}">목록가기</a>
+
+	<div>
+		글번호: <span id="id" th:text="${board.id}">1번</span>
+	</div>
+	<h1 th:text="${board.title}">제목</h1>
+	<p th:text="${board.content}">내용</p>
+
+	<div>
+		<a th:href="@{/board/delete/{id}(id=${board.id})}">삭제</a>
+		<a th:href="@{/board/update/{id}(id=${board.id})}">수정</a>
+	</div>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="/js/Board.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,78 @@
+#wrap {
+	display: flex;
+}
+
+.shadow {
+	box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+}
+
+/* sidebar ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.sidebar {
+	min-width: 200px;
+	min-height: 100vh;
+	background: #4e73df;
+	background-image: linear-gradient(180deg,#4e73df 10%,#224abe 100%);
+}
+
+.sidebar * {
+	color: #fff;
+}
+
+.sidebar h1 {
+	border-bottom: 1px solid;
+	padding: 30px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.sidebar>ul>li {
+	padding: 10px 30px 10px 10px;
+	border-bottom: 1px solid;
+}
+
+.sidebar>ul>li>a {
+	display: block;
+}
+
+/* content ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.content-wrap {
+	display: flex;
+	flex-direction: column;
+	background: #f8f9fc;
+	padding: 10px;
+	width: 100%;
+}
+
+.content {
+	flex: 1 0 auto;
+}
+
+.content .header {
+	padding: 10px;
+	margin:10px;
+	background: #fff;
+	border-radius: 10px;
+}
+
+.content .nav {}
+
+.content .container {
+	padding: 20px 10px;
+}
+
+.content .container .cont1 {
+	font-weight: bold;
+	font-size: 20px;
+	color: #000;
+}
+.content .container p {
+	margin: 10px 0 25px;
+}
+
+.footer {
+	background: #fff;
+	padding: 2rem 0;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 12px;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- 타임리프의 th 속성을 사용하기 위해 선언된 네임스테이스 -->
+<head>
+<meta charset="UTF-8">
+<title>게시판 목록</title>
+<link th:href="@{/css/reset.css}" rel="stylesheet" />
+<link th:href="@{/css/content.css}" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/common.js}"></script>
+</head>
+<body>
+	<div id="wrap">
+		<div class="table">
+			<table>
+				<colgroup>
+					<col width="40" />
+					<col width="60" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>글 번호</th>
+						<th>제목</th>
+					</tr>
+				</thead>
+				<tbody id="boardBody">
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="search_box">
+			<input type="text" name="keyword" class="keyword" id="searchKeyword" placeholder="검색어를 입력하세요">
+			<button type="button">검색</button>
+		</div>
+
+		<a th:href="@{/board/write}">글쓰기</a>
+
+		<div>
+			<ul class="pagination">
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+	</script>
+
+	<script th:src="@{/js/ListOutput.js}"></script>
+	<!-- <script th:src="@{/js/boardService.js}"></script> -->
+</body>
+</html>

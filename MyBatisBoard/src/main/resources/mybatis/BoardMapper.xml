@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- id는 메서드명, resultType는 리턴, parameterType는 매개변수 -->
+<mapper namespace="com.spring.Board.mapper.BoardMapper">
+
+	<insert id="createBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO board (title, content, visibility, fixed, category) VALUES (#{title}, #{content}, #{visibility},
+		#{fixed}, #{category});
+	</insert>
+
+	<insert id="createFile" parameterType="Files">
+		INSERT INTO file (board_id, file_original_name, file_name, file_path, file_type, file_data) VALUES
+		(#{board_id}, #{file_original_name}, #{file_name}, #{file_path}, #{file_type}, #{file_data})
+	</insert>
+
+	<update id="Update" parameterType="Board">
+	UPDATE board SET title = #{title}, content = #{content}, visibility = #{visibility},
+	fixed = #{fixed}, category = #{category} WHERE id = #{id};
+	</update>
+	<update id="UpdateFile" parameterType="Files">
+	UPDATE file SET file_original_name = #{file_original_name}, file_name = #{file_name}, file_path = #{file_path} WHERE board_id = #{id};
+	</update>
+
+	<select id="detail" parameterType="int" resultMap="boardResultMap">
+		SELECT a.*, b.*
+		FROM board a
+		INNER JOIN file b ON a.id = b.board_id
+		WHERE a.id = #{id}
+	</select>
+
+	<resultMap id="boardResultMap" type="com.spring.Board.Model.Board">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="visibility" column="visibility" />
+		<result property="fixed" column="fixed" />
+		<result property="category" column="category" />
+		<collection property="fileList" ofType="com.spring.Board.Model.Files">
+			<result property="file_id" column="file_id" />
+			<result property="board_id" column="board_id" />
+			<result property="file_original_name" column="file_original_name" />
+			<result property="file_name" column="file_name" />
+			<result property="file_path" column="file_path" />
+			<result property="file_type" column="file_type" />
+			<result property="file_data" column="file_data" />
+		</collection>
+	</resultMap>
+
+	<!-- <resultMap id="boardResultMap" type="com.spring.Board.Model.Board"> -->
+	<!-- <result property="id" column="id" /> -->
+	<!-- <result property="title" column="title" /> -->
+	<!-- <result property="content" column="content" /> -->
+	<!-- <result property="visibility" column="visibility" /> -->
+	<!-- <result property="fixed" column="fixed" /> -->
+	<!-- <result property="category" column="category" /> -->
+	<!-- <association property="files" resultMap="fileResultMap" /> -->
+	<!-- </resultMap> -->
+	<!-- <resultMap id="fileResultMap" type="com.spring.Board.Model.Files"> -->
+	<!-- <result property="id" column="id" /> -->
+	<!-- <result property="board_id" column="board_id" /> -->
+	<!-- <result property="file_original_name" column="file_original_name" /> -->
+	<!-- <result property="file_name" column="file_name" /> -->
+	<!-- <result property="file_path" column="file_path" /> -->
+	<!-- </resultMap> -->
+
+
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board WHERE id = #{id}
+	</delete>
+
+<!-- 	<update id="DeleteFile" parameterType="Board"> -->
+<!-- 		DELETE FROM file WHERE board_id = #{id}; -->
+<!-- 	</update> -->
+
+
+<!-- 	<update id="Update" parameterType="Board"> -->
+<!-- 		UPDATE board SET title = #{title}, content = #{content}, visibility = #{visibility}, fixed = #{fixed}, category = #{category}, file = #{file} WHERE id = -->
+<!-- 		#{id}; -->
+<!-- 	</update> -->
+
+
+	<select id="keyword" resultType="Board">
+		SELECT * FROM board WHERE title LIKE CONCAT('%', #{pageNation.keyword}, '%')
+	</select>
+
+	<select id="getBoardsByPage" resultType="Board">
+		<if test="pageNation.keyword == null">
+			SELECT * FROM board ORDER BY id DESC LIMIT #{pageNation.pageSize} OFFSET #{pageNation.offset}
+		</if>
+		<if test="pageNation.keyword != null">
+			SELECT * FROM board WHERE title LIKE CONCAT('%', #{pageNation.keyword}, '%') LIMIT #{pageNation.pageSize} OFFSET #{pageNation.offset}
+		</if>
+	</select>
+
+	<select id="selectCnt" parameterType="int">
+		<if test="pageNation.keyword == null">
+			SELECT count(*) FROM board
+		</if>
+		<if test="pageNation.keyword != null">
+			SELECT count(*) FROM board WHERE title LIKE CONCAT('%', #{pageNation.keyword}, '%')
+		</if>
+	</select>
+
+	<select id="Announcement" parameterType="Board">
+		SELECT * FROM board where fixed = "fixation";
+	</select>
+
+
+</mapper>
