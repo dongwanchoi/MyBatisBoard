@@ -48,7 +48,7 @@
 								<p>${board.content}</p>
 								<div>
 									<c:forEach items="${board.fileList}" var="file">
-										<c:if test="${file.file_name != null}">
+										<c:if test="${file.file_original_name != ''}">
 											<img src="${file.file_path}" alt="${file.file_original_name}, ${file.file_path}">
 										</c:if>
 									</c:forEach>

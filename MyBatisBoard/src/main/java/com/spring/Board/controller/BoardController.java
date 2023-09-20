@@ -1,12 +1,15 @@
 package com.spring.Board.controller;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,20 +49,36 @@ public class BoardController {
 		return "/board/saveForm";
 	}
 
+
+//	for (MultipartFile file : fileList) {
+//        if (!file.isEmpty()) {
+//            byte[] fileData = fileList.getBytes();
+//            System.out.println("fileData  : " + fileData);
+//        }
+//    }
+	
 	@PostMapping("/board/writeAction")
 	public String writeAction(Board board, @RequestParam("file") List<MultipartFile> fileList) throws Exception {
 		System.out.println("controller file : " + fileList);
 		boardService.create(board, fileList);
-
-//		for (MultipartFile file : fileList) {
-//	        if (!file.isEmpty()) {
-//	            byte[] fileData = fileList.getBytes();
-//	            System.out.println("fileData  : " + fileData);
-//	        }
-//	    }
-		
 		return "redirect:/board/";
 	}
+	
+	// 이미지 파일을 불러와서 출력하는 메서드
+//	@GetMapping("/board/images/{fileName:.+}")
+//    public void getImage(@PathVariable String fileName, HttpServletResponse response) throws IOException {
+//        // 이미지 파일을 읽어서 응답으로 출력
+////		response.setContentType("image/jpeg");
+//        try (InputStream is = new FileInputStream("D:/files/" + fileName)) {
+//            response.setContentType("image/jpeg"); // 이미지 타입 설정 (여기서는 JPEG로 가정)
+//            IOUtils.copy(is, response.getOutputStream());
+//        } catch (FileNotFoundException e) {
+//            // 파일을 찾을 수 없는 경우 예외 처리
+//            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+//        } 
+//    }
+		
+
 	
 //	@Autowired
 //    private ServletContext servletContext;

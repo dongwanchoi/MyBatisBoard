@@ -24,58 +24,53 @@ public class BoardService {
 	private BoardMapper mapper;
 
 	public void create(Board board, List<MultipartFile> files) throws Exception { // 글 생성
-		// 이미지 정보 생성
+
 		System.out.println("files.size() : " + files.size());
 		List<Files> images = new ArrayList<>();
 		mapper.createBoard(board); // 게시물 추가
-		System.out.println("서비스 file1 : " + files);
+		
 		if (!files.isEmpty()) {
-//			System.getProperty("user.dir") //현재 경로
-//			String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files\\"; //파일 저장 경로
+			
 			UUID uuid = UUID.randomUUID(); // 무작위 값 생성
 			String filePath = "D:\\files\\"; // 파일 저장 경로
-
-			File directory = new File(filePath); // 디렉토리 생성
-			if (!directory.exists()) {
-			    directory.mkdirs(); 
-			}
+            
 			
 			System.out.println("filePath : " + filePath);
+			
 			for (MultipartFile file : files) {
-				System.out.println("서비스 file2 : " + file);
-				String originalFilename = file.getOriginalFilename(); // 파일 이름
 
-				String fileName = uuid + "_" + originalFilename;
+				File directory = new File(filePath); // 디렉토리 생성
+				if (!directory.exists()) {
+				    directory.mkdirs(); 
+				}
 				
+				String originalFilename = file.getOriginalFilename(); // 파일 이름
+				String fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);				// 파일 확장자 추출
+				String fileName = uuid + "_" + originalFilename; 
 				File saveFile = new File(filePath, fileName);
 				file.transferTo(saveFile); // 파일 서버에 저장
-
 				
-//				String fileExtension = FilenameUtils.getExtension(originalFilename);
+				String uploadPath = "/upload/";
 
-				byte[] fileBytes = file.getBytes();
-				
 				Files file_list = new Files();
 				System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ1");
-				
 				System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ2");
+				
 				
 				file_list.setFile_original_name(originalFilename);
 				file_list.setFile_name(fileName);
-				file_list.setFile_path(filePath + fileName);
-//			    file_list.setFile_type(fileExtension); // 파일 확장자 설정
-			    file_list.setFile_data(fileBytes);
-				// 이미지 정보와 게시물 정보 연결
+				
+				
+				file_list.setFile_path(uploadPath + fileName);
+				file_list.setFile_type(fileExtension); // 파일 확장자 설정
 
-			 // 파일 데이터 읽어오기
-//	            byte[] fileBytes = MyFileHandler.readAllBytes(saveFile.toPath());
-	            
+			    System.out.println("전체 file_list: " + file_list);
 				System.out.println("board.getId(): " + board.getId());
 				file_list.setBoard_id(board.getId()); // 추가된 게시물의 ID 얻기
 				
-//				images.add(file_list);
-				
 				mapper.createFile(file_list); // 이미지 저장
+				
+				
 			}
 			System.out.println("images: " + images);
 		}
