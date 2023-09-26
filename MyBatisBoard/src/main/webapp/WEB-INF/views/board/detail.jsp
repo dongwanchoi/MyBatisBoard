@@ -46,7 +46,7 @@
 							</div>
 							<div class="body">
 								<p>${board.content}</p>
-								<div>
+								<div class="img_box">
 									<c:forEach items="${board.fileList}" var="file">
 										<c:if test="${file.file_original_name != ''}">
 											<img src="${file.file_path}" alt="${file.file_original_name}, ${file.file_path}">
@@ -78,7 +78,7 @@
 	});
 	
 	btn_update.addEventListener("click", ()=>{
-		location.href="/board/update/"+id;
+		location.href="/board/updateForm/"+id;
 	});
 		
 		

@@ -253,4 +253,10 @@ input[type="file"] {  /* 파일 필드 숨기기 */
   border: 0;
 }
 
-
+.img_box{
+	display: flex;
+	gap:20px;
+}
+.img_box img{
+	width:45%;
+}

@@ -25,7 +25,8 @@
 				<div class="container ">
 
 					<div class="cont form_cont shadow">
-						<form action="/board/writeAction" method="POST" enctype="multipart/form-data">
+<!-- 						<form action="/board/save" method="POST" enctype="multipart/form-data"> -->
+						<form name="dataForm" id="dataForm">
 
 							<div class="form-group">
 								<label>공지글 :</label> <label for="fixed">설정</label> <input type="checkbox" id="fixed" name="fixed" value="fixation">
@@ -61,7 +62,7 @@
 							<div class="file-group">
 								<ul id="FileList">
 									<c:forEach items="${board.fileList}" var="file">
-										<li class="files">${file.file_original_name}
+										<li class="files"><span class="fileName" id="${file.file_id}">${file.file_original_name}</span>
 											<button class="deleteFiles" id="deleteFile" data-fileid="${file.file_id}">삭제</button>
 										</li>
 									</c:forEach>
@@ -86,46 +87,80 @@
 			<%@ include file="../layout/footer.jsp"%>
 		</div>
 	</div>
-	<script src="/js/Validation.js"></script>
+	<!-- 	<script src="/js/Validation.js"></script> -->
+	<script src="/js/save.js"></script>
 
 
 	<script type="text/javascript">
 		// 파일 선택 시 hidden input 업데이트
 
-		var selectedFileList = document.getElementById('FileList');
+		// 		var selectedFileList = document.getElementById('FileList');
 
-		document.getElementById('file').addEventListener('change',function() {
-					var selectedFiles = this.files;
-					console.log(selectedFiles);
+		// 		document.getElementById('file').addEventListener('change',function() {
+		// 					var selectedFiles = this.files;
+		// 					console.log(selectedFiles);
 
-					selectedFileList.innerHTML = '';
-					// 선택한 파일들의 이름을 표시할 리스트 생성
-					console.log(selectedFileList);
+		// 					selectedFileList.innerHTML = '';
+		// 					// 선택한 파일들의 이름을 표시할 리스트 생성
+		// 					console.log(selectedFileList);
 
-					for (var i = 0; i < selectedFiles.length; i++) {
-						var selectedFile = selectedFiles[i];
-						var listItem = document.createElement('li');
-						listItem.textContent = selectedFile.name;
+		// 					for (var i = 0; i < selectedFiles.length; i++) {
+		// 						var selectedFile = selectedFiles[i];
+		// 						var listItem = document.createElement('li');
+		// 						listItem.textContent = selectedFile.name;
 
-						// "삭제" 버튼 생성 및 속성 설정
-// 						var deleteBtn = document.createElement('button');
-// 						deleteBtn.textContent = '삭제';
-// 						deleteBtn.classList.add('deleteFiles');
-// 						deleteBtn.setAttribute('data-fileid',
-// 								'your_file_id_here'); // 파일 ID를 설정하세요
+		// 						// "삭제" 버튼 생성 및 속성 설정
+		// // 						var deleteBtn = document.createElement('button');
+		// // 						deleteBtn.textContent = '삭제';
+		// // 						deleteBtn.classList.add('deleteFiles');
+		// // 						deleteBtn.setAttribute('data-fileid',
+		// // 								'your_file_id_here'); // 파일 ID를 설정하세요
 
-// 						// "삭제" 버튼 클릭 이벤트 처리
-// 						deleteBtn.addEventListener('click', function() {
-// // 							var fileId = this.getAttribute('data-fileid');
-// 							// 해당 리스트 아이템 삭제
-// 							var listItemToRemove = this.parentElement;
-// 							listItemToRemove.remove();
-// 						});
+		// // 						// "삭제" 버튼 클릭 이벤트 처리
+		// // 						deleteBtn.addEventListener('click', function() {
+		// // // 							var fileId = this.getAttribute('data-fileid');
+		// // 							// 해당 리스트 아이템 삭제
+		// // 							var listItemToRemove = this.parentElement;
+		// // 							listItemToRemove.remove();
+		// // 						});
 
-// 						listItem.appendChild(deleteBtn);
-						selectedFileList.appendChild(listItem);
-					}
-				});
+		// // 						listItem.appendChild(deleteBtn);
+		// 						selectedFileList.appendChild(listItem);
+		// 					}
+		// 				});
+
+		/* 
+		jstl
+
+		1. api 조회를 해서 js에서 변수  + 파일선택
+
+		2. jstl -> js에서 변수 + 파일선택
+
+		jsp, html -> 데이터를 추가 ui 같이 해줘야함
+
+
+		F
+
+
+
+		boardController
+		/board
+
+		단일책임의 원칙
+		한 서비스는 하나의 서비스
+
+
+
+		let fileList = ['최동완.PNG'] // jstl로 받아온 fileList
+
+		---추가---
+
+		
+		fileList.add('KakaoTalk_20230713_105652120_01.jpg');
+
+		fileList
+
+		 */
 	</script>
 
 </body>

@@ -5,7 +5,7 @@
 	</h1>
 	<ul>
 		<li><a href="/board">board</a></li>
-		<li><a href="/board/write">글쓰기</a></li>
+		<li><a href="/board/saveForm">글쓰기</a></li>
 		<li><a href="#">메뉴3</a></li>
 	</ul>
 </aside>

@@ -1,8 +1,8 @@
 package com.spring.Board.Service;
 
-
 import java.io.File;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,78 +19,64 @@ import com.spring.Board.mapper.BoardMapper;
 
 @Service
 public class BoardService {
-	
+
 	@Autowired
 	private BoardMapper mapper;
 
-	public void create(Board board, List<MultipartFile> files) throws Exception { // 글 생성
+	public void BoardSave(Board board) throws Exception {
+		mapper.createBoard(board); // 게시물 추가
+	}
+
+	public void FileSave(Board board, List<MultipartFile> files) throws Exception { // 글 생성
 
 		System.out.println("files.size() : " + files.size());
-		List<Files> images = new ArrayList<>();
-		mapper.createBoard(board); // 게시물 추가
-		
 		if (!files.isEmpty()) {
-			
-			UUID uuid = UUID.randomUUID(); // 무작위 값 생성
 			String filePath = "D:\\files\\"; // 파일 저장 경로
-            
-			
-			System.out.println("filePath : " + filePath);
-			
+
 			for (MultipartFile file : files) {
 
 				File directory = new File(filePath); // 디렉토리 생성
 				if (!directory.exists()) {
-				    directory.mkdirs(); 
+					directory.mkdirs();
 				}
-				
+
+				UUID uuid = UUID.randomUUID(); // 무작위 값 생성
 				String originalFilename = file.getOriginalFilename(); // 파일 이름
-				String fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);				// 파일 확장자 추출
-				String fileName = uuid + "_" + originalFilename; 
+				String fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1); // 파일 확장자 추출
+				String fileName = uuid + "_" + originalFilename;
 				File saveFile = new File(filePath, fileName);
 				file.transferTo(saveFile); // 파일 서버에 저장
-				
+
 				String uploadPath = "/upload/";
 
 				Files file_list = new Files();
-				System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ1");
-				System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ2");
-				
-				
 				file_list.setFile_original_name(originalFilename);
 				file_list.setFile_name(fileName);
-				
-				
 				file_list.setFile_path(uploadPath + fileName);
 				file_list.setFile_type(fileExtension); // 파일 확장자 설정
 
-			    System.out.println("전체 file_list: " + file_list);
-				System.out.println("board.getId(): " + board.getId());
+				System.out.println("전체 file_list: " + file_list);
 				file_list.setBoard_id(board.getId()); // 추가된 게시물의 ID 얻기
-				
-				mapper.createFile(file_list); // 이미지 저장
-				
-				
+				mapper.addFile(file_list); // 이미지 저장
 			}
-			System.out.println("images: " + images);
 		}
 	}
 
 	public List<Board> detail(int id) {
-		List<Board> boards = mapper.detail(id); 
-		System.out.println(boards);
-	    return boards;
+		List<Board> boards = mapper.detail(id);
+		System.out.println("boards: " + boards);
+		return boards;
 	}
-	
-	
+
 	public void Delete(Integer id) { // 글 삭제
 		mapper.deleteBoard(id);
 	}
 
-	
-	public void Update(Board board, List<MultipartFile> files){ // 글 수정
+	public void Update(Board board, List<MultipartFile> files, List<Integer> delidList) { // 글 수정
 		mapper.Update(board);
-		mapper.UpdateFile(files);
+		for (Integer fid : delidList) {
+			mapper.delFile(fid);
+		}
 	}
 
 	public Map<String, Object> getBoardsByPage(Board board) { // 글 목록 조회
@@ -108,7 +94,6 @@ public class BoardService {
 	}
 
 }
-
 
 //<script>
 //const btn_delete =  document.querySelector(".btn_delete");

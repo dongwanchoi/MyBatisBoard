@@ -14,20 +14,13 @@ import com.spring.Board.Model.Files;
 @Repository
 public interface BoardMapper {
 	int createBoard(Board board); //글쓰기
-	int createFile(Files file); //파일 추가
+	int addFile(Files file); //파일 추가
 
 	int deleteBoard(Integer id); // 글 삭제
 	int Update(Board board); // 글 수정
 	Files UpdateFile(List<MultipartFile> files); // 글 수정
-	
-//	public List<Board> detail(int id);
-//	public List<Files> detail_Files(int id);
+	int delFile(int id);
 	List<Board> detail(int id);
-	
-//	List<Board> detail(int id); // 글 상세보기
-//	public Map<String, Object> detail(int id);
-//	public Board detail(int id);
-	
 	int selectCnt(Board board); //글 리스트 개수 조회
 	List<Board> getBoardsByPage(Board board); //글 10개 조회
 	List<Board> Announcement(Board board); //공지 글만 조회
